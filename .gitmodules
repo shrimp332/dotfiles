@@ -1,0 +1,9 @@
+[submodule "yazi/plugins/glow.yazi"]
+	path = yazi/plugins/glow.yazi
+	url = https://github.com/sxyazi/yazi
+[submodule "alacritty/catppuccin"]
+	path = alacritty/catppuccin
+	url = https://github.com/catppuccin/alacritty
+[submodule "nvim"]
+	path = nvim
+	url = https://github.com/shrimp332/nvim-config

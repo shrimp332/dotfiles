@@ -1,0 +1,3 @@
+#TERM = "alacritty"
+import = ["/home/lmcd/.config/alacritty/font.toml", "/home/lmcd/.config/alacritty/window.toml", "/home/lmcd/.config/alacritty/catppuccin/catppuccin-mocha.toml", "/home/lmcd/.config/alacritty/cursor.toml"]
+#import = []

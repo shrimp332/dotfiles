@@ -1,0 +1,15 @@
+/*
+!.gitignore
+!.gitmodules
+!readme.md
+!/alacritty/
+!/env
+!/fish/
+!/hypr/
+!/mako/
+!/nvim/
+!/starship.toml
+!/waybar/
+!/wofi/
+!/xdgenv
+!/yazi/

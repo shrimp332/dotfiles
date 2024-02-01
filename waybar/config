@@ -1,0 +1,123 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+  ],
+  "modules-right": [
+    "tray",
+    "idle_inhibitor",
+    "wireplumber",
+    "backlight",
+    "bluetooth",
+    "network",
+    "battery",
+    "clock"
+  ],
+  "hyprland/workspaces": {
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "on-click": "activate",
+    "sort-by-number": true
+  },
+  "hyprland/window": {
+    "rewrite": {
+        "(.*)Brave": "Brave Browser",
+        "(.*)Floorp": "Ablaze Floorp",
+        "(.*)Browsing": "Ablaze Floorp",
+    },
+  },
+  "tray": {
+    "icon-size": 17,
+    "spacing": 10
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "wireplumber": {
+    "format": "{icon}",
+    "format-muted": "󰝟",
+    "tooltip-format": "{volume}%",
+    "on-click": "pavucontrol",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "backlight": {
+    "format": "{icon}",
+    "tooltip-format": "{percent}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "on-click": "blueman-manager",
+    "on-click-right": "bluetooth toggle",
+    "tooltip-format": "{status}",
+    "tooltip-format-disabled": "disabled",
+    "tooltip-format-on": "enabled",
+    "tooltip-format-off": "disabled"
+  },
+  "network": {
+    "interface": "wlp166s0",
+    "format": "{ifname}",
+    "format-wifi": "",
+    "format-ethernet": "󰈁",
+    "format-disconnected": "󰈂",
+    "tooltip-format": "{ipaddr}",
+    "tooltip-format-wifi": "{ipaddr}/{cidr} | {ifname} | {essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ipaddr}/{cidr} | {ifname}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+  "battery": {
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}",
+    "format-charging": "󰂄",
+    "tooltip-format": "{capacity}% | {timeTo}",
+    "format-icons": [
+      "󰂃",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁾",
+      "󰁿",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "max-length": 25
+  },
+  "clock": {
+    "interval": 60,
+    "format": "{:%I:%M %p}",
+    "tooltip-format": "{:%d/%m/%y}",
+    "max-length": 25
+  }
+}
+

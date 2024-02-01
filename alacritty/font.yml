@@ -1,0 +1,14 @@
+font:
+  normal:
+    family: CaskaydiaCove NFM
+    style: Regular
+  bold:
+    family: CaskaydiaCove NFM
+    style: Bold
+  italic:
+    family: CaskaydiaCove NFM
+    style: Italic
+  bold_italic:
+    family: CaskaydiaCove NFM
+    style: Bold Italic
+  size: 12.0
