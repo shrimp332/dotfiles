@@ -27,4 +27,5 @@ if status is-interactive
     alias gitcheck="git checkout"
     alias webcord="webcord --ozone-platform=wayland"
     starship init fish | source
+    zoxide init fish | source
 end
