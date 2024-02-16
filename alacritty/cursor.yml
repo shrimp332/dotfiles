@@ -1,9 +1,0 @@
-#cursor:
-#  style:
-#    shape: Underline
-#    blinking: On
-#    blink-interval: 700
-[cursor]
-shape: "Underline"
-blinking: "On"
-blink_interval: 700
