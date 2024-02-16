@@ -17,6 +17,7 @@ if status is-interactive
     alias lt="eza -la --tree --level"
     alias cat="bat"
     alias df="df -TH"
+    alias lg="lazygit"
     alias reflector="reflector @/etc/xdg/reflector/reflector.conf"
     alias ecm="ecryptfs-mount-private"
     alias ecu="ecryptfs-umount-private"
