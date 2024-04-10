@@ -11,6 +11,8 @@
 !/nvim/
 !/starship.toml
 !/waybar/
+!/wezterm/
 !/wofi/
 !/xdgenv
 !/yazi/
+!/zsh/
