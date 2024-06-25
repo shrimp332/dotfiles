@@ -27,6 +27,7 @@ if status is-interactive
     alias gitstash="git stash"
     alias gitpop="git stash pop"
     alias gitcheck="git checkout"
+    alias code="code --profile luke"
     alias webcord="webcord --ozone-platform=wayland"
     starship init fish | source
     zoxide init fish --no-cmd | source
