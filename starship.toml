@@ -8,6 +8,8 @@ $git_status\
 $character
 """
 
+add_newline = true
+
 [username]
 style_user = "white bold"
 style_root = "red bold"
@@ -33,4 +35,4 @@ format = '([\[$all_status$ahead_behind\]]($style))'
 
 [character]
 success_symbol = "[❯](bold white)" 
-error_symbol = "[](bold red)"
+error_symbol = "[❯](bold red)"
