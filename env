@@ -1,11 +1,10 @@
 EDITOR=nvim
-PATH=/home/lmcd/.local/share/cargo/bin:q:/home/lmcd/.local/bin:/home/lmcd/.local/share/gem/ruby/3.0.0/bin:$PATH
-HISTFILE=${XDG_STATE_HOME}/bash/history
+PATH=$HOME/.splashkit:$HOME/.local/share/cargo/bin:$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
 WINEPREFIX=$XDG_DATA_HOME/wine
 RUSTUP_HOME=$XDG_DATA_HOME/rustup
+CARGO_HOME=$XDG_DATA_HOME/cargo
 LESSHISTFILE=$XDG_CACHE_HOME/less/history
 GNUPGHOME=$XDG_DATA_HOME/gnupg
 GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
-CARGO_HOME=$XDG_DATA_HOME/cargo
 QT_QPA_PLATFORM=wayland
 QT_QPA_PLATFORMTHEME=qt5ct
