@@ -2,8 +2,8 @@
   "layer": "top",
   "position": "top",
   "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/window"
+    "sway/workspaces",
+    "sway/window"
   ],
   "modules-center": [
   ],
@@ -17,13 +17,13 @@
     "battery",
     "clock"
   ],
-  "hyprland/workspaces": {
+  "sway/workspaces": {
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
     "on-click": "activate",
     "sort-by-number": true
   },
-  "hyprland/window": {
+  "sway/window": {
     "rewrite": {
         "(.*)Brave": "Brave Browser",
         "(.*)Floorp": "Ablaze Floorp",
