@@ -82,7 +82,7 @@
   "network": {
     "format": "{ifname}",
     "format-wifi": "",
-    "format-ethernet": "󰈁",
+    "format-ethernet": "",
     "format-disconnected": "󰈂",
     "tooltip-format": "{ipaddr}",
     "tooltip-format-wifi": "{ipaddr}/{cidr} | {ifname} | {essid} ({signalStrength}%)",
