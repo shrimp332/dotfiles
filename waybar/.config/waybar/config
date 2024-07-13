@@ -78,7 +78,6 @@
     "tooltip-format-off": "disabled"
   },
   "network": {
-    "interface": "wlp166s0",
     "format": "{ifname}",
     "format-wifi": "",
     "format-ethernet": "󰈁",
