@@ -1,0 +1,26 @@
+window:
+  opacity: 0.9
+
+font:
+  size: 12
+  normal:
+    family: CaskaydiaCove NFM
+    style: Regular
+  italic:
+    family: CaskaydiaCove NFM
+    style: Italic 
+  bold:
+    family: CaskaydiaCove NFM
+    style: Bold 
+  bold_italic:
+    family: CaskaydiaCove NFM
+    style: Bold Italic
+
+cursor:
+  blink_interval: 700
+  style:
+    shape: Underline
+    blinking: On
+
+import:
+  - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
