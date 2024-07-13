@@ -11,11 +11,10 @@ set $right l
 set $term alacritty
 set $browser firefox
 set $menu wofi --show drun
+set $explorer thunar
 set $passwords keepassxc
 
-
 include /etc/sway/config-vars.d/*
-
 
 # Start at login
 exec autotiling -l 2
@@ -44,6 +43,7 @@ bindsym $mod+v floating toggle
 
 bindsym $mod+Return exec $term
 bindsym $mod+Space exec $menu
+bindsym $mod+e exec $explorer
 bindsym $mod+b exec $browser
 bindsym $mod+i exec $passwords
 
