@@ -55,6 +55,4 @@ if [[ -o interactive ]]; then
     alias zi="__zoxide_zi"
     # Starship
     eval "$(starship init zsh)"
-    sleep 0.001
-    clear
 fi
