@@ -17,7 +17,7 @@ set $passwords keepassxc
 include /etc/sway/config-vars.d/*
 
 # Start at login
-exec autotiling -l 2
+exec_always autotiling -l 2
 exec waybar
 
 # Theme
@@ -57,7 +57,7 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-
+floating_modifier $mod normal
 
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -81,6 +81,29 @@ bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10; workspace number 1
+
+
+# Media/Util Keys
+bindsym XF86MonBrightnessUp exec brightnessctl set +1%
+bindsym XF86MonBrightnessDown exec brightnessctl set 1%-
+bindsym $mod+XF86MonBrightnessUp exec brightnessctl set 100%
+bindsym $mod+XF86MonBrightnessDown exec brightnessctl set 1%
+
+bindsym XF86AudioRaiseVolume exec increasevol.sh
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+bindsym $mod+Shift+s exec grim -g "$(slurp)"
+bindsym Print exec grim -g "$(slurp)"
+
+## KBD Backlight, device name depends on machine
+set $keyboard_led smc::kbd_backlight
+bindsym XF86KbdBrightnessUp exec brightnessctl -d $keyboard_led set +10%
+bindsym XF86KbdBrightnessDown exec brightnessctl -d $keyboard_led set 10%-
 
 mode "resize" {
     bindsym $left resize shrink width 10px
