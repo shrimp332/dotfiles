@@ -29,10 +29,11 @@ gaps inner 5
 
 # Input
 input "1452:588:bcm5974" {
-	tap enabled
-	natural_scroll enabled
-	accel_profile "flat"
-  dwt disabled
+    tap enabled
+    natural_scroll enabled
+    accel_profile "flat"
+    dwt disabled
+    middle_emulation enabled
 }
 
 # Keybinds
