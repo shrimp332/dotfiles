@@ -18,6 +18,7 @@ include /etc/sway/config-vars.d/*
 
 # Start at login
 exec_always autotiling -l 2
+exec suspend.sh
 exec waybar
 
 # Theme
