@@ -10,7 +10,7 @@ set $right l
 # App Preferences
 set $term alacritty
 set $browser firefox
-set $menu wofi --show drun
+set $menu wofi
 set $explorer thunar
 set $passwords keepassxc
 
@@ -46,6 +46,7 @@ bindsym $mod+Space exec $menu
 bindsym $mod+e exec $explorer
 bindsym $mod+b exec $browser
 bindsym $mod+i exec $passwords
+bindsym $mod+Shift+e exec wofi-emoji
 
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
