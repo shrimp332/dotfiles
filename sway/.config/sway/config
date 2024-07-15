@@ -28,7 +28,7 @@ default_floating_border none
 gaps inner 5
 
 # Input
-input "1452:588:bcm5974" {
+input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
     tap enabled
     natural_scroll enabled
     accel_profile "flat"
