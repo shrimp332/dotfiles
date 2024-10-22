@@ -49,10 +49,12 @@ if [[ -o interactive ]]; then
         rm -f -- "$tmp"
     }
 
+    source <(fzf --zsh)
     # Zoxide
     eval "$(zoxide init zsh)"
     alias z="__zoxide_z"
     alias zi="__zoxide_zi"
     # Starship
     eval "$(starship init zsh)"
+    nerdfetch
 fi

@@ -1,6 +1,13 @@
 # Mod4 = super, Mod1 = Alt
 set $mod Mod4
 
+# Monitor
+output eDP-1 scale 1.5 position 4520,0
+#output DP-3 res 1920x1080@120Hz scale 1 transform 90 position 0,0 
+#output DP-4 scale 1 position 1080,0
+output DP-3 disable
+output DP-4 disable
+
 # Direction Keys
 set $left h
 set $down j
@@ -9,6 +16,7 @@ set $right l
 
 # App Preferences
 set $term alacritty
+#set $term alacritty
 set $browser firefox
 set $menu wofi
 set $explorer thunar
@@ -20,28 +28,42 @@ include /etc/sway/config-vars.d/*
 exec_always autotiling -l 2
 exec suspend.sh
 exec waybar
+exec mako
+exec $passwords
+exec_always easyeffects --gapplication-service
+exec pactl set-sink-volume @DEFAULT_SINK@ 40%
+exec rclone.sh
 
 # Theme
 output * bg ~/Documents/wallpaper.png fill
+default_border pixel 2
 default_border pixel 2
 default_floating_border none
 gaps inner 5
 
 # Input
-input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
+input type:touchpad {
     tap enabled
     natural_scroll enabled
     accel_profile "flat"
     dwt disabled
     middle_emulation enabled
 }
-
+input type:pointer {
+    accel_profile "flat"
+    dwt disabled
+    pointer_accel 0.3
+}
+input "type:keyboard" {
+    xkb_options caps:escape
+}
 # Keybinds
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+m exec swaymsg exit
 bindsym $mod+f fullscreen
 bindsym $mod+v floating toggle
+bindsym $mod+x exec swapScale.sh
 
 bindsym $mod+Return exec $term
 bindsym $mod+Space exec $menu
@@ -83,12 +105,12 @@ bindsym $mod+Shift+6 move container to workspace number 6; workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10; workspace number 1
+bindsym $mod+Shift+0 move container to workspace number 10;
 
 
 # Media/Util Keys
-bindsym XF86MonBrightnessUp exec brightnessctl set +1%
-bindsym XF86MonBrightnessDown exec brightnessctl set 1%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym $mod+XF86MonBrightnessUp exec brightnessctl set 100%
 bindsym $mod+XF86MonBrightnessDown exec brightnessctl set 1%
 
@@ -100,8 +122,9 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-bindsym $mod+Shift+s exec grim -g "$(slurp)"
-bindsym Print exec grim -g "$(slurp)"
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+bindsym Print exec grim -g "$(slurp)" "$HOME/Pictures/$(date +%Y%m%d%H%M)-$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13)-grim.png"
+bindsym $mod+Print exec grim "$HOME/Pictures/$(date +%Y%m%d%H%M)-$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13)-grim.png"
 
 ## KBD Backlight, device name depends on machine
 set $keyboard_led smc::kbd_backlight

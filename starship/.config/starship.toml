@@ -9,6 +9,7 @@ $character
 """
 
 add_newline = true
+command_timeout = 100
 
 [username]
 style_user = "white bold"
