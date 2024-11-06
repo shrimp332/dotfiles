@@ -2,11 +2,11 @@
 set $mod Mod4
 
 # Monitor
-output eDP-1 scale 1.5 position 4520,0
+#output eDP-1 scale 1
 #output DP-3 res 1920x1080@120Hz scale 1 transform 90 position 0,0 
 #output DP-4 scale 1 position 1080,0
-output DP-3 disable
-output DP-4 disable
+#output DP-3 disable
+#output DP-4 disable
 
 # Direction Keys
 set $left h
@@ -16,8 +16,7 @@ set $right l
 
 # App Preferences
 set $term alacritty
-#set $term alacritty
-set $browser firefox
+set $browser firefox-esr
 set $menu wofi
 set $explorer thunar
 set $passwords keepassxc
@@ -32,10 +31,10 @@ exec mako
 exec $passwords
 exec_always easyeffects --gapplication-service
 exec pactl set-sink-volume @DEFAULT_SINK@ 40%
-exec rclone.sh
+#exec rclone.sh
 
 # Theme
-output * bg ~/Documents/wallpaper.png fill
+output * bg ~/Documents/wallpaper.jpg fill
 default_border pixel 2
 default_border pixel 2
 default_floating_border none
@@ -130,6 +129,8 @@ bindsym $mod+Print exec grim "$HOME/Pictures/$(date +%Y%m%d%H%M)-$(tr -dc A-Za-z
 set $keyboard_led smc::kbd_backlight
 bindsym XF86KbdBrightnessUp exec brightnessctl -d $keyboard_led set +10%
 bindsym XF86KbdBrightnessDown exec brightnessctl -d $keyboard_led set 10%-
+bindsym $mod+XF86KbdBrightnessUp exec brightnessctl -d $keyboard_led set 100%
+bindsym $mod+XF86KbdBrightnessDown exec brightnessctl -d $keyboard_led set 0%
 
 mode "resize" {
     bindsym $left resize shrink width 10px
