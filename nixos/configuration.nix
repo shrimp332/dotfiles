@@ -64,10 +64,13 @@
   };
 
   programs.sway.enable = true;
+
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
   };
+  services.gvfs.enable = true;
+
   programs.zsh.enable = true;
   programs.dconf.enable = true;
 
@@ -86,6 +89,7 @@
     unzip
     trash-cli
     tlrc
+    btop
 
     nerdfetch
     neofetch
@@ -94,6 +98,7 @@
     git
     gnumake
     lazygit
+    gh
 
     gcc
     go
@@ -101,6 +106,10 @@
     nodePackages.npm
     cargo
     python3
+
+    xfce.tumbler
+    ffmpegthumbnailer
+    webp-pixbuf-loader
 
     glib
     gtk2
@@ -115,6 +124,7 @@
     swayidle
     pamixer
     playerctl
+    pulseaudio
     pavucontrol
     alacritty
     imv
