@@ -24,6 +24,7 @@ if [[ -o interactive ]]; then
     alias ecm="ecryptfs-mount-private"
     alias ecu="ecryptfs-umount-private"
     alias code="code --profile luke"
+    alias rm=trash
 
     # Temp fix
     alias imv="env -u WAYLAND_DISPLAY imv-dir"
