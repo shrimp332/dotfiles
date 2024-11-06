@@ -122,6 +122,7 @@
     nwg-look
     greetd.tuigreet
     brightnessctl
+    autotiling
 
     firefox-esr
     keepassxc
