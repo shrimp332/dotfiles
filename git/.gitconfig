@@ -1,0 +1,9 @@
+[user]
+	name = shrimp332
+	email = 101687942+shrimp332@users.noreply.github.com
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper = !/usr/bin/env gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/usr/bin/env gh auth git-credential
