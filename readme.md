@@ -30,7 +30,7 @@ icons:
 https://www.pling.com/s/Gnome/p/1166289/
 
 ```sh
-ln -sf $HOME/.config/gtk-2.0 ~/.themes/Tokyonight-Dark/gtk-2.0
-ln -sf $HOME/.config/gtk-3.0 ~/.themes/Tokyonight-Dark/gtk-3.0
-ln -sf $HOME/.config/gtk-4.0 ~/.themes/Tokyonight-Dark/gtk-4.0
+ln -sf ~/.themes/Tokyonight-Dark/gtk-2.0 $HOME/.config/gtk-2.0
+ln -sf ~/.themes/Tokyonight-Dark/gtk-3.0 $HOME/.config/gtk-3.0
+ln -sf ~/.themes/Tokyonight-Dark/gtk-4.0 $HOME/.config/gtk-4.0
 ```

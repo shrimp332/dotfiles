@@ -25,6 +25,7 @@ if [[ -o interactive ]]; then
     alias ecu="ecryptfs-umount-private"
     alias code="code --profile luke"
     alias rm=trash
+    alias nix-shell="nix-shell --command 'zsh'"
 
     # Temp fix
     alias imv="env -u WAYLAND_DISPLAY imv-dir"
