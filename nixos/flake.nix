@@ -3,22 +3,28 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs: 
+  outputs = { self, ... } @ inputs: 
   let
-    lib = nixpkgs.lib;
+    system = "x86_64-linux";
+    lib = inputs.nixpkgs.lib;
+    pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
   in {
     nixosConfigurations = {
       frame = lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
         modules = [ 
           ./hosts/frame/configuration.nix 
           ./modules/default.nix
 
           inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
         ];
+        specialArgs = {
+          inherit pkgs-unstable;
+        };
       };
     };
   };

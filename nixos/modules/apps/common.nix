@@ -14,5 +14,7 @@
       vscode
       mission-center
     ];
+
+    services.flatpak.enable = true;
   };
 }
