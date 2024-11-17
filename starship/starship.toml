@@ -5,6 +5,7 @@ $hostname\
 $directory\
 $git_branch\
 $git_status\
+$nix_shell\
 $character
 """
 
@@ -33,6 +34,9 @@ format = '\[[$symbol$branch]($style)\]'
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
+
+[nix_shell]
+format = '[ ❄️ ](bold blue)'
 
 [character]
 success_symbol = "[❯](bold white)" 
