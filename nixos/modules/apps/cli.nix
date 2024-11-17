@@ -1,0 +1,35 @@
+{ pkgs, lib, config, ... }:
+{
+  options = {
+    cli.enable = lib.mkEnableOption "enable cli";
+  };
+
+  config = lib.mkIf config.cli.enable {
+    environment.systemPackages = with pkgs; [
+      gettext
+      yazi
+      fzf
+      ripgrep
+      dust
+      starship
+      zoxide
+      eza
+      bat
+      vim
+      wget
+      unzip
+      trash-cli
+      tlrc
+      btop
+      file
+
+      nerdfetch
+      neofetch
+
+      neovim
+      git
+      gh
+    ];
+
+  };
+}
