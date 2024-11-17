@@ -26,6 +26,17 @@
           inherit pkgs-unstable;
         };
       };
+
+      nixvm = lib.nixosSystem {
+        inherit system;
+        modules = [ 
+          ./hosts/nixvm/configuration.nix 
+          ./modules/default.nix
+        ];
+        specialArgs = {
+          inherit pkgs-unstable;
+        };
+      };
     };
   };
 }
