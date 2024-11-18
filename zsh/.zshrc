@@ -13,19 +13,17 @@ export $(envsubst < ~/.config/env)
 
 if [[ -o interactive ]]; then
     # Aliases
-    alias ls="eza -F" 
-    alias la="eza -aF"
-    alias ll="eza -laF --grid"
-    alias lt="eza -laF --tree --level"
+    alias ls="eza -F --color=auto" 
+    alias la="eza -aF --color=auto"
+    alias ll="eza -laF --color=auto"
     alias cat="bat"
     alias df="df -TH"
     alias lg="lazygit"
-    alias nv="nvim"
+    alias vi="nvim"
     alias ecm="ecryptfs-mount-private"
     alias ecu="ecryptfs-umount-private"
-    alias code="code --profile luke"
     alias rm=trash
-    alias nix-shell="nix-shell --command 'zsh'"
+    alias nix-shell="nix-shell --command 'NIXSH=1 zsh'"
 
     # Temp fix
     alias imv="env -u WAYLAND_DISPLAY imv-dir"
@@ -36,7 +34,6 @@ if [[ -o interactive ]]; then
     # Plugins
     ZSH_PLUGIN_DIR=~/.config/zsh/plugins/
     source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-    #source $ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
     # Enable delete key
     bindkey "^[[3~" delete-char
@@ -58,5 +55,7 @@ if [[ -o interactive ]]; then
     alias zi="__zoxide_zi"
     # Starship
     eval "$(starship init zsh)"
-    nerdfetch
+    if [[ -z $NIXSH ]]; then
+        nerdfetch
+    fi
 fi
