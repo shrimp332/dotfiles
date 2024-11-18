@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, username, ... }:
 {
   options = {
     sway.enable = lib.mkEnableOption "enable sway";
@@ -40,7 +40,8 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      nerdfonts
+      # nerdfonts
+      (nerdfonts.override { fonts = [ "CascadiaCode" "CascadiaMono" ];})
     ];
 
     # Login manager
@@ -49,11 +50,11 @@
       settings = {
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -w 100 -c ${pkgs.sway}/bin/sway";
-          user = "lmcd";
+          user = username;
         };
         initial_session = {
           command = "${pkgs.sway}/bin/sway";
-          user = "lmcd";
+          user = username;
         };
       };
     };

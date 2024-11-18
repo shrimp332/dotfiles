@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ lib, config, username, ... }: {
   
   options = {
     vm.enable = lib.mkEnableOption "enable vm";
@@ -8,6 +8,6 @@
     virtualisation.libvirtd.enable = true;
     programs.virt-manager.enable = true;
 
-    users.users.lmcd.extraGroups = [ "libvirtd" ];
+    users.users.${username}.extraGroups = [ "libvirtd" ];
   };
 }

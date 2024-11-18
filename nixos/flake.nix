@@ -10,19 +10,21 @@
   outputs = { self, ... } @ inputs: 
   let
     system = "x86_64-linux";
+    username = "lmcd";
     lib = inputs.nixpkgs.lib;
     pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
   in {
     nixosConfigurations = {
       frame = lib.nixosSystem {
         inherit system;
-        modules = [ 
+        modules = [
           ./hosts/frame/configuration.nix 
           ./modules/default.nix
 
           inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
         ];
         specialArgs = {
+          inherit username;
           inherit pkgs-unstable;
         };
       };
@@ -34,6 +36,18 @@
           ./modules/default.nix
         ];
         specialArgs = {
+          inherit username;
+          inherit pkgs-unstable;
+        };
+      };
+      red = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/red/configuration.nix
+          ./modules/default.nix
+        ];
+        specialArgs = {
+          inherit username;
           inherit pkgs-unstable;
         };
       };

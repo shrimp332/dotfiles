@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: 
+{ pkgs, lib, config, username, ... }: 
 {
   imports = [
     ./apps/common.nix
@@ -25,7 +25,7 @@
     zsh-completions 
   ];
 
-  users.users.lmcd = {
+  users.users.${username} = {
     shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" ];
@@ -62,4 +62,5 @@
 
   dev.enable = lib.mkDefault true;
   cli.enable = lib.mkDefault true;
+  tailscale.enable = lib.mkIf config.smb.enable true;
 }
