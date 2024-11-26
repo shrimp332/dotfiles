@@ -23,6 +23,7 @@
       tlrc
       btop
       file
+      tmux
 
       nerdfetch
       neofetch

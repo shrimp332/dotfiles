@@ -23,10 +23,9 @@ if [[ -o interactive ]]; then
     alias ecm="ecryptfs-mount-private"
     alias ecu="ecryptfs-umount-private"
     alias rm=trash
-    alias nix-shell="nix-shell --command 'NIXSH=1 zsh'"
 
     # Temp fix
-    alias imv="env -u WAYLAND_DISPLAY imv-dir"
+    #alias imv="env -u WAYLAND_DISPLAY imv-dir"
 
     # Keybinds
     bindkey -s "^[s" "^asudo ^e"
@@ -40,10 +39,10 @@ if [[ -o interactive ]]; then
 
     # Yazi
     function ya() {
-        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
         yazi "$@" --cwd-file="$tmp"
-        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-            cd -- "$cwd"
+        if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+            builtin cd -- "$cwd"
         fi
         rm -f -- "$tmp"
     }
@@ -55,7 +54,5 @@ if [[ -o interactive ]]; then
     alias zi="__zoxide_zi"
     # Starship
     eval "$(starship init zsh)"
-    if [[ -z $NIXSH ]]; then
-        nerdfetch
-    fi
+    nerdfetch
 fi

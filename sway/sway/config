@@ -16,7 +16,7 @@ set $right l
 
 # App Preferences
 set $term alacritty
-set $browser firefox-esr
+set $browser firefox
 set $menu wofi
 set $explorer thunar
 set $passwords keepassxc
@@ -25,7 +25,7 @@ include /etc/sway/config-vars.d/*
 
 # Start at login
 exec_always autotiling -l 2
-exec suspend.sh
+exec ~/.local/bin/suspend.sh
 exec waybar
 exec mako
 exec $passwords
@@ -34,7 +34,7 @@ exec pactl set-sink-volume @DEFAULT_SINK@ 40%
 #exec rclone.sh
 
 # Theme
-output * bg ~/Documents/wallpaper.jpg fill
+output * bg /home/lmcd/Documents/wallpaper.jpg fill
 default_border pixel 2
 default_border pixel 2
 default_floating_border none
@@ -113,7 +113,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym $mod+XF86MonBrightnessUp exec brightnessctl set 100%
 bindsym $mod+XF86MonBrightnessDown exec brightnessctl set 1%
 
-bindsym XF86AudioRaiseVolume exec increasevol.sh
+bindsym XF86AudioRaiseVolume exec ~/.local/bin/increasevol.sh
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
