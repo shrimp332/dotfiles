@@ -7,37 +7,48 @@ unsetopt beep extendedglob notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
+autoload -U compinit; compinit
+
+# Util funcs
+_have() { type "$1" &>/dev/null }
+_have_file() { test -e "$1" &>/dev/null }
+_alif() { _have "$2" && alias "$1"="$2 $3" }
+
 # ENV
-export $(envsubst < ~/.config/xdgenv)
-export $(envsubst < ~/.config/env)
+_have envsubst && \
+  export $(envsubst < ~/.config/xdgenv) && \
+  export $(envsubst < ~/.config/env)
 
 if [[ -o interactive ]]; then
-    # Aliases
-    alias ls="eza -F --color=auto" 
-    alias la="eza -aF --color=auto"
-    alias ll="eza -laF --color=auto"
-    alias cat="bat"
-    alias df="df -TH"
-    alias lg="lazygit"
-    alias vi="nvim"
-    alias ecm="ecryptfs-mount-private"
-    alias ecu="ecryptfs-umount-private"
-    alias rm=trash
+    # Vim
+    _alif vi vim && export EDITOR=vim
+    _alif vi nvim && export EDITOR=nvim && export MANPAGER='nvim +Man!'
 
-    # Temp fix
-    #alias imv="env -u WAYLAND_DISPLAY imv-dir"
+
+    # Aliases
+    _alif ls eza "-F --color=auto"
+    _alif la eza "-aF --color=auto"
+    _alif ll eza "-laF --color=auto"
+    _alif cat bat
+    alias df="df -TH"
+    _alif lg lazygit
+    _alif ecm ecryptfs-mount-private
+    _alif ecu ecryptfs-umount-private
+    _alif rm trash
 
     # Keybinds
     bindkey -s "^[s" "^asudo ^e"
 
     # Plugins
     ZSH_PLUGIN_DIR=~/.config/zsh/plugins/
-    source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    _have_file $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh && \
+      source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
     # Enable delete key
     bindkey "^[[3~" delete-char
 
     # Yazi
+    _have yazi && \
     function ya() {
         local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
         yazi "$@" --cwd-file="$tmp"
@@ -47,12 +58,16 @@ if [[ -o interactive ]]; then
         rm -f -- "$tmp"
     }
 
-    source <(fzf --zsh)
+    _have fzf && \
+      source <(fzf --zsh)
     # Zoxide
-    eval "$(zoxide init zsh)"
-    alias z="__zoxide_z"
-    alias zi="__zoxide_zi"
+    _have zoxide && \
+      eval "$(zoxide init zsh)"
+    _alif z __zoxide_z
+    _alif zi __zoxide_zi
     # Starship
-    eval "$(starship init zsh)"
-    nerdfetch
+    _have starship && \
+      eval "$(starship init zsh)"
+    _have nerdfetch && \
+      nerdfetch
 fi
