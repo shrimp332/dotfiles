@@ -24,8 +24,9 @@ if [[ -o interactive ]]; then
     _alif vi vim && export EDITOR=vim
     _alif vi nvim && export EDITOR=nvim && export MANPAGER='nvim +Man!'
 
-
     # Aliases
+    alias la="ls -aF"
+    alias ll="ls -laF"
     _alif ls eza "-F --color=auto"
     _alif la eza "-aF --color=auto"
     _alif ll eza "-laF --color=auto"
@@ -37,17 +38,16 @@ if [[ -o interactive ]]; then
     _alif rm trash
 
     # Keybinds
-    bindkey -s "^[s" "^asudo ^e"
+    _have doas && bindkey -s "^[s" "^adoas !!^e"
+    _have sudo && bindkey -s "^[s" "^asudo !!^e"
+    bindkey "^[[3~" delete-char # delete key
 
     # Plugins
     ZSH_PLUGIN_DIR=~/.config/zsh/plugins/
     _have_file $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh && \
       source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
-    # Enable delete key
-    bindkey "^[[3~" delete-char
 
-    # Yazi
     _have yazi && \
     function ya() {
         local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -57,15 +57,12 @@ if [[ -o interactive ]]; then
         fi
         rm -f -- "$tmp"
     }
-
     _have fzf && \
       source <(fzf --zsh)
-    # Zoxide
     _have zoxide && \
       eval "$(zoxide init zsh)"
     _alif z __zoxide_z
     _alif zi __zoxide_zi
-    # Starship
     _have starship && \
       eval "$(starship init zsh)"
     _have nerdfetch && \
