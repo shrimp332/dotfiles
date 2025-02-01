@@ -19,6 +19,11 @@ mkdir ~/Documents
 wget https://w.wallhaven.cc/full/3l/wallhaven-3lp2md.jpg
 mv wallhaven-3lp2md.jpg ~/Documents/wallpaper.jpg
 
+# emoji picker, depends on wtype
+git clone https://github.com/Zeioth/wofi-emoji.git /tmp/wofi-emoji
+mv /tmp/wofi-emoji/wofi-emoji ~/.local/bin/wofi-emoji
+chmod +x ~/.local/bin/wofi-emoji
+
 gsettings set org.gnome.desktop.wm.preferences button-layout ":"
 cd
 ```

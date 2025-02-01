@@ -1,12 +1,7 @@
-# Mod4 = super, Mod1 = Alt
-set $mod Mod4
-
 # Monitor
-output eDP-1 scale 1.5 position 3440,0
-#output DP-3 res 3440x1440@175Hz scale 1 position 0,0 
-output DP-3 disable
-#output DP-4 scale 1 position 1080,0
-#output DP-4 disable
+output * disable
+output eDP-1 enable scale 1.5 position 3440,0
+#output DP-3 enable res 3440x1440@175Hz scale 1 position 0,0 
 
 # Direction Keys
 set $left h
@@ -21,20 +16,24 @@ set $menu wofi
 set $explorer thunar
 set $passwords keepassxc
 
-include /etc/sway/config-vars.d/*
+include /etc/sway/config.d/*
 
 # Start at login
-exec_always autotiling -l 2
+exec autotiling -l 2
 exec ~/.local/bin/suspend.sh
 exec waybar
 exec mako
 exec $passwords
-exec_always easyeffects --gapplication-service
+exec easyeffects --gapplication-service
+exec pika-backup --gapplication-service
+exec pika-backup-monitor
 exec pactl set-sink-volume @DEFAULT_SINK@ 40%
 #exec rclone.sh
+exec signal-desktop --ozone-platform=wayland
+exec vesktop --start-minimized
 
 # Theme
-output * bg /home/lmcd/Documents/wallpaper.jpg fill
+output * bg /home/lmcd/Pictures/wallpaper.jpg fill
 default_border pixel 2
 default_border pixel 2
 default_floating_border none
@@ -53,65 +52,79 @@ input type:pointer {
     dwt disabled
     pointer_accel 0.3
 }
-input "type:keyboard" {
+input type:keyboard {
     xkb_options caps:escape
+    xkb_layout "us"
+    xkb_variant "altgr-intl"
 }
+
 # Keybinds
-bindsym $mod+Shift+q kill
-bindsym $mod+Shift+c reload
-bindsym $mod+m exec swaymsg exit
-bindsym $mod+f fullscreen
-bindsym $mod+v floating toggle
-bindsym $mod+x exec swapScale.sh
+# Mod4 = super
 
-bindsym $mod+Return exec $term
-bindsym $mod+Space exec $menu
-bindsym $mod+e exec $explorer
-bindsym $mod+b exec $browser
-bindsym $mod+i exec $passwords
-bindsym $mod+Shift+e exec wofi-emoji
+bindsym Mod4+Shift+q kill
+bindsym Mod4+Shift+c reload
+bindsym Mod4+m exec swaymsg exit
+bindsym Mod4+f fullscreen
+bindsym Mod4+v floating toggle
 
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+bindsym Mod4+Return exec $term
+bindsym Mod4+Space exec $menu
+bindsym Mod4+e exec $explorer
+bindsym Mod4+b exec $browser
+bindsym Mod4+i exec $passwords
+bindsym Mod4+Shift+e exec ~/.local/bin/wofi-emoji
 
-
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-floating_modifier $mod normal
-
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-bindsym $mod+6 workspace number 6
-bindsym $mod+7 workspace number 7
-bindsym $mod+8 workspace number 8
-bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 10
+bindsym Mod4+$left focus left
+bindsym Mod4+$down focus down
+bindsym Mod4+$up focus up
+bindsym Mod4+$right focus right
 
 
-bindsym $mod+Shift+1 move container to workspace number 1; workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2; workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3; workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4; workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5; workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6; workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10;
+bindsym Mod4+Shift+$left move left
+bindsym Mod4+Shift+$down move down
+bindsym Mod4+Shift+$up move up
+bindsym Mod4+Shift+$right move right
+floating_modifier Mod4 normal
 
+bindsym Mod4+1 workspace number 1
+bindsym Mod4+2 workspace number 2
+bindsym Mod4+3 workspace number 3
+bindsym Mod4+4 workspace number 4
+bindsym Mod4+5 workspace number 5
+bindsym Mod4+6 workspace number 6
+bindsym Mod4+7 workspace number 7
+bindsym Mod4+8 workspace number 8
+bindsym Mod4+9 workspace number 9
+bindsym Mod4+0 workspace number 10
+
+
+bindsym Mod4+Shift+1 move container to workspace number 1; workspace number 1
+bindsym Mod4+Shift+2 move container to workspace number 2; workspace number 2
+bindsym Mod4+Shift+3 move container to workspace number 3; workspace number 3
+bindsym Mod4+Shift+4 move container to workspace number 4; workspace number 4
+bindsym Mod4+Shift+5 move container to workspace number 5; workspace number 5
+bindsym Mod4+Shift+6 move container to workspace number 6; workspace number 6
+bindsym Mod4+Shift+7 move container to workspace number 7; workspace number 7
+bindsym Mod4+Shift+8 move container to workspace number 8; workspace number 8
+bindsym Mod4+Shift+9 move container to workspace number 9; workspace number 9
+bindsym Mod4+Shift+0 move container to workspace number 10;workspace number 10
+
+bindsym Mod4+control+Shift+1 move container to workspace number 1;
+bindsym Mod4+control+Shift+2 move container to workspace number 2;
+bindsym Mod4+control+Shift+3 move container to workspace number 3;
+bindsym Mod4+control+Shift+4 move container to workspace number 4;
+bindsym Mod4+control+Shift+5 move container to workspace number 5;
+bindsym Mod4+control+Shift+6 move container to workspace number 6;
+bindsym Mod4+control+Shift+7 move container to workspace number 7;
+bindsym Mod4+control+Shift+8 move container to workspace number 8;
+bindsym Mod4+control+Shift+9 move container to workspace number 9;
+bindsym Mod4+control+Shift+0 move container to workspace number 10;
 
 # Media/Util Keys
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym $mod+XF86MonBrightnessUp exec brightnessctl set 100%
-bindsym $mod+XF86MonBrightnessDown exec brightnessctl set 1%
+bindsym Mod4+XF86MonBrightnessUp exec brightnessctl set 100%
+bindsym Mod4+XF86MonBrightnessDown exec brightnessctl set 1%
 
 bindsym XF86AudioRaiseVolume exec ~/.local/bin/increasevol.sh
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -121,16 +134,16 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+bindsym Mod4+Shift+s exec grim -g "$(slurp)" - | wl-copy
 bindsym Print exec grim -g "$(slurp)" "$HOME/Pictures/$(date +%Y%m%d%H%M)-$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13)-grim.png"
-bindsym $mod+Print exec grim "$HOME/Pictures/$(date +%Y%m%d%H%M)-$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13)-grim.png"
+bindsym Mod4+Print exec grim "$HOME/Pictures/$(date +%Y%m%d%H%M)-$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13)-grim.png"
 
 ## KBD Backlight, device name depends on machine
 set $keyboard_led smc::kbd_backlight
 bindsym XF86KbdBrightnessUp exec brightnessctl -d $keyboard_led set +10%
 bindsym XF86KbdBrightnessDown exec brightnessctl -d $keyboard_led set 10%-
-bindsym $mod+XF86KbdBrightnessUp exec brightnessctl -d $keyboard_led set 100%
-bindsym $mod+XF86KbdBrightnessDown exec brightnessctl -d $keyboard_led set 0%
+bindsym Mod4+XF86KbdBrightnessUp exec brightnessctl -d $keyboard_led set 100%
+bindsym Mod4+XF86KbdBrightnessDown exec brightnessctl -d $keyboard_led set 0%
 
 mode "resize" {
     bindsym $left resize shrink width 10px
@@ -141,6 +154,6 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym Mod4+r mode "resize"
 
 include /etc/sway/config.d/*
