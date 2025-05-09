@@ -1,9 +1,16 @@
 [user]
-	name = shrimp332
+	name = Luke McDonald
 	email = 101687942+shrimp332@users.noreply.github.com
+	signingkey = /home/lmcd/.ssh/id_rsa.pub
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
 	helper = !/usr/bin/env gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/env gh auth git-credential
+[merge]
+	tool = nvimdiff
+[gpg]
+	format = ssh
+[commit]
+	gpgSign = true
