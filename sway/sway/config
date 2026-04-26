@@ -1,7 +1,8 @@
 # Monitor
 output * disable
-output eDP-1 enable scale 1.5 position 3440,0
-#output DP-3 enable res 3440x1440@175Hz scale 1 position 0,0 
+output eDP-1 enable scale 1.5 position 0,0
+#output DP-3 enable res 3440x1440@175Hz scale 1 position -3440,0 
+#output DP-3 enable res 3840x2160@60Hz scale 1 position 1504,0 
 
 # Direction Keys
 set $left h
@@ -30,7 +31,7 @@ exec pika-backup-monitor
 exec pactl set-sink-volume @DEFAULT_SINK@ 40%
 #exec rclone.sh
 exec signal-desktop --ozone-platform=wayland
-exec vesktop --start-minimized
+exec vesktop --start-minimized --ozone-platform=wayland
 
 # Theme
 output * bg /home/lmcd/Pictures/wallpaper.jpg fill

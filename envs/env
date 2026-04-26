@@ -1,5 +1,4 @@
 BROWSER=firefox
-DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
 WINEPREFIX=$XDG_DATA_HOME/wine
 GNUPGHOME=$XDG_DATA_HOME/gnupg
 LESSHISTFILE=$XDG_CACHE_HOME/less/history
@@ -11,4 +10,5 @@ MOZ_ENABLE_WAYLAND=1
 RUSTUP_HOME=$XDG_DATA_HOME/rustup
 CARGO_HOME=$XDG_DATA_HOME/cargo
 GOPATH=$XDG_DATA_HOME/go
-PATH=$HOME/.local/bin:$XDG_DATA_HOME/go/bin:$PATH
+ELECTRON_OZONE_PLATFORM_HINT=auto
+PATH=$HOME/.local/bin:$XDG_DATA_HOME/go/bin:/home/linuxbrew/.linuxbrew/opt/dotnet@8/bin:$PATH

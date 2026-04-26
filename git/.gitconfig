@@ -14,3 +14,5 @@
 	format = ssh
 [commit]
 	gpgSign = true
+[gpg "ssh"]
+	allowedSignersFile = /home/lmcd/.config/git/allowed_signers

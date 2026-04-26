@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.config/zsh/histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt autocd nomatch
 unsetopt beep extendedglob notify
 bindkey -e
@@ -9,10 +9,15 @@ bindkey -e
 
 autoload -U compinit; compinit
 
+fpath=(~/.local/share/zsh/completions $fpath)
+
 # Util funcs
 _have() { type "$1" &>/dev/null }
 _have_file() { test -e "$1" &>/dev/null }
 _alif() { _have "$2" && alias "$1"="$2 $3" }
+
+# cmdlets
+mkdircd() {mkdir "$1"; cd "$1"}
 
 # ENV
 _have envsubst && \
@@ -20,11 +25,14 @@ _have envsubst && \
   export $(envsubst < ~/.config/env)
 
 if [[ -o interactive ]]; then
+    PS1='%B%F{white}%n:%F{blue}%~%f %(?.%F{white}>%f.%F{red}>%f) %b'
+
     # Vim
     _alif vi vim && export EDITOR=vim
     _alif vi nvim && export EDITOR=nvim && export MANPAGER='nvim +Man!'
 
     # Aliases
+    alias ls="ls -F"
     alias la="ls -aF"
     alias ll="ls -laF"
     _alif ls eza "-F --color=auto"
