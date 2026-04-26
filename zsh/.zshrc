@@ -25,7 +25,7 @@ _have envsubst && \
   export $(envsubst < ~/.config/env)
 
 if [[ -o interactive ]]; then
-    PS1='%B%F{white}%n:%F{blue}%~%f %(?.%F{white}>%f.%F{red}>%f) %b'
+    PS1='%B%F{white}%n:%F{blue}%~%f %(?.%F{white}❯%f.%F{red}❯%f) %b'
 
     # Vim
     _alif vi vim && export EDITOR=vim
@@ -44,6 +44,7 @@ if [[ -o interactive ]]; then
     _alif ecm ecryptfs-mount-private
     _alif ecu ecryptfs-umount-private
     _alif rm trash
+    _alif imv imv-dir
 
     # Keybinds
     _have doas && bindkey -s "^[s" "^adoas !!^e"

@@ -2,8 +2,7 @@
   "layer": "top",
   "position": "top",
   "modules-left": [
-    "sway/workspaces",
-    "sway/window"
+    "ext/workspaces"
   ],
   "modules-center": [
   ],
@@ -17,18 +16,9 @@
     "battery",
     "clock"
   ],
-  "sway/workspaces": {
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
+  "ext/workspaces": {
     "on-click": "activate",
     "sort-by-number": true
-  },
-  "sway/window": {
-    "rewrite": {
-        "(.*)Brave": "Brave Browser",
-        "(.*)Floorp": "Ablaze Floorp",
-        "(.*)Browsing": "Ablaze Floorp",
-    },
   },
   "tray": {
     "icon-size": 17,
@@ -46,7 +36,7 @@
     "format-muted": "󰝟",
     "tooltip-format": "{volume}%",
     "on-click": "pavucontrol",
-    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "format-icons": [
       "",
       "",
@@ -80,7 +70,7 @@
     "tooltip-format-off": "disabled"
   },
   "network": {
-    "format": "{ifname}",
+    "format": "",
     "format-wifi": "",
     "format-ethernet": "",
     "format-disconnected": "󰈂",
@@ -116,7 +106,7 @@
   },
   "clock": {
     "interval": 60,
-    "format": "{:%I:%M %p}",
+    "format": "{:%H:%M}",
     "tooltip-format": "{:%d/%m/%y}",
     "max-length": 25
   }

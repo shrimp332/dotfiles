@@ -3,7 +3,8 @@ image_size=32
 width=600
 height=100
 insensitive=true
-mode=drun,run
+mode=drun
 columns=1
 padding:5
 lines=6
+gtk_dark=true
