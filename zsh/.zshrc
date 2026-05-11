@@ -55,6 +55,12 @@ if [[ -o interactive ]]; then
         }
     fi
 
+    if _have xdg-open; then
+        open() {
+           (nohup xdg-open "$@" &> /dev/null &)
+        }
+    fi
+
     # Keybinds
     _have doas && bindkey -s "^[s" "^adoas !!^e"
     _have sudo && bindkey -s "^[s" "^asudo !!^e"
