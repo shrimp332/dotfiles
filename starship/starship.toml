@@ -6,10 +6,11 @@ $directory\
 $git_branch\
 $git_status\
 $nix_shell\
+$python\
 $character
 """
 
-add_newline = true
+add_newline = false
 command_timeout = 100
 
 [username]
@@ -27,6 +28,7 @@ disabled = false
 [directory]
 truncation_length = 10
 truncate_to_repo = true # truncates directory to root folder if in github repo
+read_only = " "
 style = "bold italic blue"
 
 [git_branch]
@@ -38,6 +40,9 @@ stashed = ''
 
 [nix_shell]
 format = '[ ❄️ ](bold blue)'
+
+[python]
+format = ' [(\(python $virtualenv\) )]($style)'
 
 [character]
 success_symbol = "[❯](bold white)" 
