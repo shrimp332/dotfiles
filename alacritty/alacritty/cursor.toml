@@ -1,5 +1,0 @@
-[cursor]
-blink_interval = 700
-[cursor.style]
-shape = "Underline"
-blinking = "On"
