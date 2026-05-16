@@ -1,13 +1,10 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.config/zsh/histfile
 HISTSIZE=10000
 SAVEHIST=10000
+setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS
 setopt autocd nomatch
 unsetopt beep extendedglob notify
 bindkey -e
-# End of lines configured by zsh-newuser-install
-
-autoload -U compinit; compinit
 
 fpath=(~/.local/share/zsh/completions $fpath)
 
@@ -17,14 +14,19 @@ _have_file() { test -e "$1" &>/dev/null }
 _alif() { _have "$2" && alias "$1"="$2 $3" }
 
 # cmdlets
-mkdircd() {mkdir "$1"; cd "$1"}
+mkdircd() {mkdir "$1" && cd "$1"}
 
 # ENV
-_have envsubst && \
-  export $(envsubst < ~/.config/xdgenv) && \
-  export $(envsubst < ~/.config/env)
+if _have envsubst; then
+    set -a
+    source <(envsubst < ~/.config/xdgenv)
+    source <(envsubst < ~/.config/env)
+    set +a
+fi
 
 if [[ -o interactive ]]; then
+    autoload -U compinit; compinit
+
     PS1='%B%F{white}%n:%F{blue}%~%f %(?.%F{white}❯%f.%F{red}❯%f) %b'
 
     # Vim
@@ -40,11 +42,18 @@ if [[ -o interactive ]]; then
     _alif ll eza "-laF --color=auto"
     _alif cat bat
     alias df="df -TH"
-    _alif lg lazygit
-    _alif ecm ecryptfs-mount-private
-    _alif ecu ecryptfs-umount-private
+    _alif ecm gocryptfs "~/.Private ~/Private"
+    _alif _ufusermount fusermount3 -u
+    _alif ecu _ufusermount "~/Private"
     _alif rm trash
     _alif imv imv-dir
+    _alif lg lazygit
+
+    if _have xdg-open; then
+        open() {
+           (nohup xdg-open "$@" &> /dev/null &)
+        }
+    fi
 
     # Keybinds
     _have doas && bindkey -s "^[s" "^adoas !!^e"
@@ -70,8 +79,6 @@ if [[ -o interactive ]]; then
       source <(fzf --zsh)
     _have zoxide && \
       eval "$(zoxide init zsh)"
-    _alif z __zoxide_z
-    _alif zi __zoxide_zi
     _have starship && \
       eval "$(starship init zsh)"
     _have nerdfetch && \
