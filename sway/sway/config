@@ -14,7 +14,7 @@ set $right l
 set $term alacritty
 set $browser firefox
 set $menu wofi
-set $explorer thunar
+set $explorer nautilus
 set $passwords keepassxc
 
 include /etc/sway/config.d/*
@@ -24,21 +24,18 @@ exec autotiling -l 2
 exec ~/.local/bin/suspend.sh
 exec waybar
 exec mako
-exec $passwords
-exec easyeffects --gapplication-service
-exec pika-backup --gapplication-service
-exec pika-backup-monitor
 exec pactl set-sink-volume @DEFAULT_SINK@ 40%
-#exec rclone.sh
-exec signal-desktop --ozone-platform=wayland
-exec vesktop --start-minimized --ozone-platform=wayland
+exec flatpak run com.github.wwmm.easyeffects --gapplication-service
+exec flatpak run dev.vencord.Vesktop --start-minimized
+exec dex --autostart
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Theme
 output * bg /home/lmcd/Pictures/wallpaper.jpg fill
 default_border pixel 2
 default_border pixel 2
 default_floating_border none
-gaps inner 5
+gaps inner 3
 
 # Input
 input type:touchpad {
@@ -127,9 +124,9 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym Mod4+XF86MonBrightnessUp exec brightnessctl set 100%
 bindsym Mod4+XF86MonBrightnessDown exec brightnessctl set 1%
 
-bindsym XF86AudioRaiseVolume exec ~/.local/bin/increasevol.sh
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec sh -c " wpctl set-mute @DEFAULT_AUDIO_SINK@ 0; wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
