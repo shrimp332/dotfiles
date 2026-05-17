@@ -24,13 +24,6 @@
   networking.hostName = "nixvm";
   networking.firewall.enable = lib.mkForce false;
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-  services.blueman.enable = true;
-
-
   zramSwap.enable = true;
 
   plasma.enable = true;
