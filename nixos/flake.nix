@@ -29,6 +29,18 @@
             inherit pkgs-unstable;
           };
         };
+        nixbook = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hosts/nixbook/configuration.nix
+            ./common.nix
+          ];
+          specialArgs = {
+            inherit locale;
+            inherit username;
+            inherit pkgs-unstable;
+          };
+        };
       };
     };
 }
