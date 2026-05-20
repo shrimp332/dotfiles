@@ -13,17 +13,6 @@ _have() { type "$1" &>/dev/null }
 _have_file() { test -e "$1" &>/dev/null }
 _alif() { _have "$2" && alias "$1"="$2 $3" }
 
-# cmdlets
-mkdircd() {mkdir "$1" && cd "$1"}
-
-# ENV
-if _have envsubst; then
-    set -a
-    source <(envsubst < ~/.config/xdgenv)
-    source <(envsubst < ~/.config/env)
-    set +a
-fi
-
 if [[ -o interactive ]]; then
     autoload -U compinit; compinit
 

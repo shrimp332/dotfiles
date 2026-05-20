@@ -1,4 +1,5 @@
 {
 	"home": [".zshrc"],
+	"home": [".zshenv"],
 	"config": ["zsh"]
 }
