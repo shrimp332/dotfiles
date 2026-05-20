@@ -51,12 +51,9 @@ if [[ -o interactive ]]; then
 
     if _have xdg-open; then
         open() {
-           (nohup xdg-open "$@" &> /dev/null &)
-        }
-    fi
-
-    if _have xdg-open; then
-        open() {
+           if [ -z "$1" ]; then
+              open .
+           fi
            (nohup xdg-open "$@" &> /dev/null &)
         }
     fi
