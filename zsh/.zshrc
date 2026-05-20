@@ -68,22 +68,10 @@ if [[ -o interactive ]]; then
     _have_file $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh && \
       source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
-
-    _have yazi && \
-    function ya() {
-        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-        yazi "$@" --cwd-file="$tmp"
-        if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-            builtin cd -- "$cwd"
-        fi
-        rm -f -- "$tmp"
-    }
     _have fzf && \
       source <(fzf --zsh)
     _have zoxide && \
       eval "$(zoxide init zsh)"
     _have starship && \
       eval "$(starship init zsh)"
-    _have nerdfetch && \
-      nerdfetch
 fi
