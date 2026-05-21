@@ -5,8 +5,8 @@ $hostname\
 $directory\
 $git_branch\
 $git_status\
-$nix_shell\
 $python\
+$nix_shell\
 $character
 """
 
@@ -39,7 +39,7 @@ format = '([\[$all_status$ahead_behind\]]($style))'
 stashed = ''
 
 [nix_shell]
-format = '[ ❄️ ](bold blue)'
+format = '[󰜗 ](bold blue)'
 
 [python]
 format = ' [(\(python $virtualenv\) )]($style)'
