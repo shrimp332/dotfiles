@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+file=$(ls ~/Templates/ | fzf) && cp -i ~/Templates/"$file" .
