@@ -63,4 +63,6 @@ if [[ -o interactive ]]; then
       eval "$(zoxide init zsh)"
     _have starship && \
       eval "$(starship init zsh)"
+    _have direnv && \
+      eval "$(direnv hook zsh)"
 fi
