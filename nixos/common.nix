@@ -1,12 +1,19 @@
-{ pkgs, pkgs-unstable, lib, config, username, locale, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  lib,
+  config,
+  username,
+  locale,
+  ...
+}:
 {
   imports = [
     ./plasma.nix
+    ./sway.nix
   ];
 
-  options = {
-    tlp.enable = lib.mkEnableOption "enable tlp";
-  };
+  options = { };
 
   config = {
     environment.systemPackages =
@@ -39,15 +46,19 @@
         glow
         dust
         trash-cli
+        direnv
 
         # build tools
         gcc
         go
         cargo
+        nodejs
 
         # misc
         starship
         tealdeer
+        fastfetch
+        claude-code
       ])
       ++ (with pkgs-unstable; [
         neovim
@@ -55,19 +66,23 @@
 
     i18n.defaultLocale = locale;
     i18n.extraLocaleSettings = {
-        LC_ADDRESS = locale;
-        LC_IDENTIFICATION = locale;
-        LC_MEASUREMENT = locale;
-        LC_MONETARY = locale;
-        LC_NAME = locale;
-        LC_NUMERIC = locale;
-        LC_PAPER = locale;
-        LC_TELEPHONE = locale;
-        LC_TIME = locale;
+      LC_ADDRESS = locale;
+      LC_IDENTIFICATION = locale;
+      LC_MEASUREMENT = locale;
+      LC_MONETARY = locale;
+      LC_NAME = locale;
+      LC_NUMERIC = locale;
+      LC_PAPER = locale;
+      LC_TELEPHONE = locale;
+      LC_TIME = locale;
     };
 
+    programs.nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
 
-    programs.nix-ld.enable = true;
+      ];
+    };
 
     programs.zsh = {
       enable = true;
@@ -110,12 +125,10 @@
     networking.networkmanager.enable = true;
     networking.firewall.enable = true;
 
-    services.tlp = lib.mkIf config.tlp.enable {
+    services.tailscale = {
       enable = true;
-      settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-      };
+      extraUpFlags = [ "--accept-dns=false" ];
     };
+    networking.firewall.trustedInterfaces = [ "tailscale0" ];
   };
 }
