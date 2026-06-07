@@ -29,6 +29,8 @@
       wl-clipboard
       autotiling
 
+      dex
+
       brightnessctl
       playerctl
       pavucontrol

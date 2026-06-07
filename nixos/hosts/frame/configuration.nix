@@ -1,4 +1,10 @@
-{ config, pkgs, lib, username, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  username,
+  ...
+}:
 
 {
   imports = [
@@ -49,6 +55,10 @@
     order = config.security.pam.services.sudo.rules.auth.unix.order + 10;
   };
 
+  programs.dconf.enable = true;
+  environment.systemPackages = with pkgs; [
+    easyeffects
+  ];
 
   services.fwupd.enable = true;
 
