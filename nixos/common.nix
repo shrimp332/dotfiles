@@ -49,11 +49,12 @@
         trash-cli
         direnv
 
-        # build tools
+        # dev tools & langs
         gcc
         go
         cargo
         nodejs
+        python3
 
         # misc
         starship
