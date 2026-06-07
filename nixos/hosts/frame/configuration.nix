@@ -64,5 +64,7 @@
     overrideFolders = false;
   };
 
+  podman.enable = true;
+
   system.stateVersion = "26.05"; # Don't change after install
 }

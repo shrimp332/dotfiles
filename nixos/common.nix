@@ -11,6 +11,7 @@
   imports = [
     ./plasma.nix
     ./sway.nix
+    ./podman.nix
   ];
 
   options = { };
