@@ -13,6 +13,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/".options = [ "compress=zstd:3" ];
+  fileSystems."/home".options = [ "compress=zstd:3" ];
 
   networking.hostName = "frame";
 
@@ -33,6 +34,11 @@
 
   services.fprintd.enable = true;
   security.pam.services.login.rules.auth.fprintd = {
+    control = "sufficient";
+    modulePath = "${pkgs.fprintd}/lib/security/pam_fprintd.so";
+    order = config.security.pam.services.login.rules.auth.unix.order + 10;
+  };
+  security.pam.services.greetd.rules.auth.fprintd = {
     control = "sufficient";
     modulePath = "${pkgs.fprintd}/lib/security/pam_fprintd.so";
     order = config.security.pam.services.login.rules.auth.unix.order + 10;
