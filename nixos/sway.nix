@@ -70,6 +70,12 @@
       nerd-fonts.caskaydia-mono
     ];
 
+    qt = {
+      enable = true;
+      platformTheme = "kde";
+      style = "breeze";
+    };
+
     apps.enable = true;
   };
 }
