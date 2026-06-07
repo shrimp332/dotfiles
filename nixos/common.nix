@@ -94,7 +94,10 @@
     users.users.${username} = {
       shell = pkgs.zsh;
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+      ];
       initialPassword = "1234";
     };
 
@@ -136,6 +139,22 @@
       enable = true;
       extraUpFlags = [ "--accept-dns=false" ];
     };
+
     networking.firewall.trustedInterfaces = [ "tailscale0" ];
+    fileSystems."/mnt/rocky/shared" = {
+      device = "100.118.116.144:/mnt/shared";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=300" ];
+    };
+    fileSystems."/mnt/rocky/lmcd" = {
+      device = "100.118.116.144:/mnt/lmcd";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=300" ];
+    };
+    fileSystems."/mnt/rocky/lmcd-home" = {
+      device = "100.118.116.144:/home/lmcd";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=300" ];
+    };
   };
 }
