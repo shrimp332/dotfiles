@@ -92,7 +92,7 @@
     users.users.${username} = {
       shell = pkgs.zsh;
       isNormalUser = true;
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "networkmanager" ];
       initialPassword = "1234";
     };
 
@@ -122,7 +122,12 @@
       openFirewall = false;
     };
 
-    networking.networkmanager.enable = true;
+    networking.networkmanager = {
+      enable = true;
+      plugins = with pkgs; [
+        networkmanager-openconnect
+      ];
+    };
     networking.firewall.enable = true;
 
     services.tailscale = {
