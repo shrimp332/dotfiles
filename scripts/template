@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-file=$(ls ~/Templates/ | fzf) && cp -i ~/Templates/"$file" .
+file="$HOME/Templates/$(ls $HOME/Templates/ | fzf)"
+
+if [[ "$file" == *".tar"* || "$file" == *".tgz" ]]; then
+    tar xkf $file
+else
+    cp -i "$file" .
+fi
