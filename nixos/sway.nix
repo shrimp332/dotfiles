@@ -35,6 +35,9 @@
       playerctl
       pavucontrol
 
+      mpv
+      imv
+
       glib # gsettings
     ];
 
