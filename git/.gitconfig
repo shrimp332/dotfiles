@@ -1,7 +1,7 @@
 [user]
 	name = Luke McDonald
 	email = 101687942+shrimp332@users.noreply.github.com
-	signingkey = /home/lmcd/.ssh/id_rsa.pub
+	signingkey = /home/lmcd/.ssh/id_ed25519.pub
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
