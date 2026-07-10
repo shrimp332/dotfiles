@@ -1,9 +1,6 @@
-general.import = ["/home/lmcd/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
-
 [window]
 opacity = 0.8
 blur = true
-#decorations = "none"
 
 [cursor]
 blink_interval = 700
@@ -38,3 +35,25 @@ osc52 = "CopyPaste"
 key = "Return"
 mods = "Shift"
 chars = "\u001B\r"
+
+[colors.primary]
+foreground = "#dbdbdb"
+background = "#000000"
+
+[colors.normal]
+black = "#464646"
+red = "#b85252"
+green = "#9ac794"
+yellow = "#d7b191"
+blue = "#9ca8d0"
+magenta = "#b799b9"
+cyan = "#8bb0b8"
+
+[colors.bright]
+black = "#464646"
+red = "#b85252"
+green = "#9ac794"
+yellow = "#d7b191"
+blue = "#9ca8d0"
+magenta = "#b799b9"
+cyan = "#8bb0b8"
