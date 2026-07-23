@@ -1,0 +1,86 @@
+[private]
+default:
+    @just -g --list --unsorted
+
+# supports: pacman, xbps, dnf, apt, nix profile, flatpak
+[group('system')]
+update:
+    #!/usr/bin/env sh
+    SUDO="sudo"
+    if command -v doas >/dev/null 2>&1; then
+        SUDO="doas"
+    fi
+
+    _flatpak=1 # arch-update does flatpaks itself
+
+    # Arch linux
+    if command -v pacman > /dev/null 2>&1; then
+        if command -v arch-update > /dev/null 2>&1; then
+            arch-update; _flatpak=0
+        elif command -v paru > /dev/null 2>&1; then
+            paru -Syu
+            paru -Qdtq | paru -Rns -
+        else
+            $SUDO pacman -Syu
+            $SUDO pacman -Qdtq | $SUDO pacman -Rns -
+        fi
+    fi
+
+    # Void linux
+    if command -v xbps-install > /dev/null 2>&1; then
+        $SUDO xbps-install -Su
+        $SUDO xbps-remove -o
+    fi
+
+    # dnf
+    if command -v dnf > /dev/null 2>&1; then
+        $SUDO dnf upgrade
+        $SUDO dnf autoremove
+    fi
+
+    # apt
+    if command -v apt > /dev/null 2>&1; then
+        if command -v nala > /dev/null 2>&1; then
+            $SUDO nala update; $SUDO nala upgrade
+            $SUDO nala autoremove
+        else
+            $SUDO apt-get update; $SUDO apt-get full-upgrade
+            $SUDO apt-get autoremove
+        fi
+    fi
+
+    # Flatpak
+    if command -v flatpak > /dev/null 2>&1 && [ "$_flatpak" -eq 1 ]; then
+        flatpak update
+        flatpak uninstall --unused
+    fi
+
+    # Nix profiles
+    if command -v nix > /dev/null 2>&1; then
+        printf 'Update nix profile? [Y/n] '
+        read -r doNix
+
+        if [ "$doNix" != n ] && [ "$doNix" != N ] ; then
+           [ -n "$(nix profile list 2>/dev/null)" ] && nix profile upgrade --impure --all
+           nix-collect-garbage --delete-older-than 14d
+        fi
+    fi
+
+[group('utils')]
+serve port="8080":
+    miniserve -p {{port}} .
+
+[group('utils')]
+serve-auth user password:
+    miniserve --auth {{user}}:{{password}} .
+
+# copy terminfo + public key
+[group('ssh')]
+ssh-setup host:
+    ssh-copy-id {{host}}
+    infocmp -x | ssh {{host}} -- tic -x -
+
+# ssh host on tailscale
+[group('ssh')]
+sshtail:
+    ssh $(tailscale status | fzf | awk '{print $1}')

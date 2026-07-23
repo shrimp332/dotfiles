@@ -37,6 +37,7 @@ if [[ -o interactive ]]; then
     _alif rm trash
     _alif imv imv-dir
     _alif lg lazygit
+    _alif jg just "-g"
 
     if _have xdg-open; then
         open() {
