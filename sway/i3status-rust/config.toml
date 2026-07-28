@@ -5,6 +5,10 @@ separator = ""
 [icons]
 icons = "material-nf"
 
+[[block]]
+block = "focused_window"
+[block.format]
+full = " $title.str() |"
 
 [[block]]
 block = "cpu"
@@ -33,9 +37,9 @@ warning = 80
 button = "left"
 cmd = "alacritty -e btop"
 
-
 [[block]]
 block = "backlight"
+missing_format = ""
 
 [[block]]
 block = "sound"
@@ -53,3 +57,9 @@ cmd = "alacritty -e nmtui"
 [[block]]
 block = "battery"
 full_format = " $icon $percentage "
+
+
+[[block]]
+block = "time"
+interval = 60
+format = " $timestamp.datetime(f:'%a %R') "
