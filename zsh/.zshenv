@@ -24,4 +24,4 @@ export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export GOPATH=$XDG_DATA_HOME/go
 export ELECTRON_OZONE_PLATFORM_HINT=auto
-export PATH=$HOME/.local/bin:$XDG_DATA_HOME/go/bin:$PATH
+export PATH=/var/lib/flatpak/exports/bin:$HOME/.local/bin:$XDG_DATA_HOME/go/bin:$PATH
