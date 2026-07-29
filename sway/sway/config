@@ -12,6 +12,9 @@ bar {
 }
 
 
+# Mod4 = super
+set $mod Mod4
+
 # Direction Keys
 set $left h
 set $down j
@@ -58,6 +61,15 @@ input type:keyboard {
     xkb_layout "us"
     xkb_variant "altgr-intl"
 }
+
+# Scratchpad https://www.reddit.com/r/swaywm/comments/sye1zt/scratchpad_with_a_constant_terminall_running/ imr0 comment, changed for alacritty (--class) + add tmux
+bindsym --to-code $mod+grave exec (swaymsg "[app_id=dropdown] scratchpad show") || exec $term --class dropdown -e tmux new-session -A -s scratch
+
+for_window [app_id="dropdown"] floating enable, \
+    resize set 70 ppt 60 ppt, \
+    move position center, \
+    move to scratchpad, \
+    scratchpad show
 
 # Keybinds
 # Mod4 = super
