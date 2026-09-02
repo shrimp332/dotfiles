@@ -1,6 +1,6 @@
 HISTFILE=~/.config/zsh/histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
 setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS
 setopt autocd nomatch
 unsetopt beep extendedglob notify
@@ -28,8 +28,8 @@ if [[ -o interactive ]]; then
     alias ll="ls -laF"
     _alif ls eza "-F --color=auto"
     _alif la eza "-aF --color=auto"
-    _alif ll eza "-laF --color=auto"
-    _alif cat bat
+    _alif ll eza "-lagF --color=auto"
+    _alif cat bat "-pP"
     alias df="df -TH"
     _alif ecm gocryptfs "~/.Private ~/Private"
     _alif _ufusermount fusermount3 -u
@@ -38,6 +38,13 @@ if [[ -o interactive ]]; then
     _alif imv imv-dir
     _alif lg lazygit
     _alif jg just "-g"
+
+    if _have git; then
+        cdr() {
+            dir=$(git rev-parse --show-toplevel)
+            cd $dir
+        }
+    fi
 
     if _have xdg-open; then
         open() {
