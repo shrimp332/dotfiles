@@ -63,16 +63,15 @@ update:
         if [ "$doNix" != n ] && [ "$doNix" != N ] ; then
            [ -n "$(nix profile list 2>/dev/null)" ] && nix profile upgrade --impure --all
            nix-collect-garbage --delete-older-than 14d
-        fi
-    fi
+        fi fi
 
 [group('utils')]
-serve port="8080":
-    miniserve -p {{port}} .
+serve path="." port="8080":
+    miniserve -p {{port}} {{path}}
 
 [group('utils')]
-serve-auth user password:
-    miniserve --auth {{user}}:{{password}} .
+serve-auth user password path="." port="8080":
+    miniserve --auth {{user}}:{{password}} -p {{port}} {{path}}
 
 # copy terminfo + public key
 [group('ssh')]
@@ -84,3 +83,13 @@ ssh-setup host:
 [group('ssh')]
 sshtail:
     ssh $(tailscale status | fzf | awk '{print $1}')
+
+[linux]
+[group('flatpak')]
+flatpak-remove:
+    id=$(flatpak list -j | jq -r '.[].application_id' | fzf) && flatpak uninstall "$id"
+
+[linux]
+[group('flatpak')]
+flatpak-add *args:
+    id=$(flatpak search -j "{{args}}" | jq -r '.[].application_id' | fzf) && flatpak install "$id"
