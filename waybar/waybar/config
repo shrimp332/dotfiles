@@ -2,7 +2,7 @@
   "layer": "top",
   "position": "top",
   "modules-left": [
-    "ext/workspaces"
+    "niri/workspaces"
   ],
   "modules-center": [
   ],
@@ -16,10 +16,6 @@
     "battery",
     "clock"
   ],
-  "ext/workspaces": {
-    "on-click": "activate",
-    "sort-by-number": true
-  },
   "tray": {
     "icon-size": 17,
     "spacing": 10
@@ -78,7 +74,8 @@
     "tooltip-format-wifi": "{ipaddr}/{cidr} | {ifname} | {essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "{ipaddr}/{cidr} | {ifname}",
     "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50
+    "max-length": 50,
+    "on-click": "alacritty -e nmtui"
   },
   "battery": {
     "interval": 60,
