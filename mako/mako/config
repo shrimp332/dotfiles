@@ -1,1 +1,4 @@
 default-timeout=5000
+font=CaskaydiaCove Nerd Font Mono 10
+background-color=#1F1F1FFF
+border-color=#00000000

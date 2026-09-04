@@ -1,3 +1,18 @@
+output "DP-2" {
+    mode "3440x1440@175"
+    scale 1
+    position x=0 y=0
+    focus-at-startup
+}
+
+output "HDMI-A-1" {
+    // off
+    mode "1920x1080@60"
+    scale 1
+    transform "270"
+    position x=1080 y=0
+}
+
 input {
     keyboard {
         xkb {
@@ -7,74 +22,53 @@ input {
     }
 
     touchpad {
-        // off
         tap
-        // dwt
-        // dwtp
-        // drag false
-        // drag-lock
         natural-scroll
-        // accel-speed 0.2
         accel-profile "flat"
-        // scroll-method "two-finger"
-        // disabled-on-external-mouse
     }
     mouse {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
         accel-profile "flat"
-        // scroll-method "no-scroll"
-    }
-    trackpoint {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "on-button-down"
-        // scroll-button 273
-        // scroll-button-lock
-        // middle-emulation
     }
     focus-follows-mouse max-scroll-amount="90%"
 }
 
-// https://yalter.github.io/niri/Configuration:-Outputs
-/-output "eDP-1" {
-    // Uncomment this line to disable this output.
-    // off
 
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1440x900@59.996"
-
-    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1
-
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
-    transform "normal"
-
-    position x=0 y=0
+gestures {
+    hot-corners {
+        off
+    }
 }
 
-// https://yalter.github.io/niri/Configuration:-Layout
 layout {
-    gaps 5
+    gaps 3
 
     center-focused-column "never"
     preset-column-widths {
         proportion 0.5
+        proportion 0.33333333333
     }
 
     default-column-width { proportion 0.5; }
 
     focus-ring {
-        width 1
+        off
+        // width  1
+        // active-color "#1F1F2F"
     }
 
     border {
         off
     }
+
+    // remove background color, combines with wallpaper layer-rule
+    background-color "transparent"
 }
+
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
 prefer-no-csd
 
 window-rule {
@@ -83,10 +77,9 @@ window-rule {
 }
 
 spawn-at-startup "waybar"
-spawn-sh-at-startup "swaybg -i Documents/wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o DP-2 -i Pictures/wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o HDMI-A-1 -i Pictures/wallpaper.png"
 
-// To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
 hotkey-overlay {
     skip-at-startup
@@ -95,9 +88,7 @@ hotkey-overlay {
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-// https://yalter.github.io/niri/Configuration:-Animations
 animations {
-    // off
     slowdown 0.75
 }
 
@@ -111,21 +102,21 @@ window-rule {
     block-out-from "screen-capture"
 }
 
+window-rule {
+    match app-id="^Alacritty$"
+
+    background-effect {
+        blur true
+    }
+}
+
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    Mod+Space repeat=false hotkey-overlay-title="Run an Application: wofi" { spawn "wofi"; }
-    Mod+B repeat=false hotkey-overlay-title="Run Browser: firefox" { spawn "firefox"; }
+    Mod+D repeat=false hotkey-overlay-title="Run an Application: wmenu" { spawn "wmenu-run" "-i"; }
+    Mod+B repeat=false hotkey-overlay-title="Run Browser: librewolf" { spawn "librewolf"; }
     Mod+E repeat=false hotkey-overlay-title="Run Explorer: nautilus" { spawn-sh "nautilus --new-window"; }
-
-    Super+Alt+L repeat=false hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-
-    // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
-    // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
-    // For example, this is a standard bind to toggle the screen reader (orca).
-    // Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
