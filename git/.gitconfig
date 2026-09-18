@@ -16,3 +16,5 @@
 	gpgSign = true
 [gpg "ssh"]
 	allowedSignersFile = /home/lmcd/.config/git/allowed_signers
+[submodule]
+	recurse = true
