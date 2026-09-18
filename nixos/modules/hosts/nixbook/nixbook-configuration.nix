@@ -5,7 +5,18 @@
       self.nixosModules.base
       self.nixosModules.lmcd
       self.nixosModules.workstation
+      self.nixosModules.deployTarget
     ];
+  };
+
+  flake.deploy.nodes.nixbook = {
+    hostname = "100.125.163.51";
+    sshUser = "deploy";
+    user = "root";
+    profiles.system = {
+      path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos
+        self.nixosConfigurations.nixbook;
+    };
   };
 
   flake.nixosModules.nixbookConfiguration = { pkgs, lib, ... }: {

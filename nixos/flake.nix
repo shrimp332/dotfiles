@@ -5,7 +5,10 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
