@@ -6,6 +6,8 @@
 
     services.flatpak = {
       enable = true;
+      update.auto.enable = true;
+
       packages = [
         "com.github.tchx84.Flatseal"
         "com.obsproject.Studio"

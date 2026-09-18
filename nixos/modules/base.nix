@@ -15,6 +15,16 @@ in
       defaultEditor = true;
     };
 
+    system.autoUpgrade = {
+      enable = true;
+      flake = "github:shrimp332/dotfiles?dir=nixos#nixbook";
+      flags = [ "--refresh" ];
+      dates = "weekly";
+      randomizedDelaySec = "45min";
+      allowReboot = false;
+      operation = "boot";
+    };
+
     time.timeZone = tz;
     i18n.defaultLocale = locale;
     i18n.extraLocaleSettings = {
