@@ -1,0 +1,52 @@
+on:
+  schedule:
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+env:
+  PR_BRANCH: flake-lock-update
+
+jobs:
+  update-lock:
+    runs-on: docker
+    container:
+      image: nixos/nix:latest
+      env:
+        NIX_CONFIG: "experimental-features = nix-command flakes"
+    steps:
+      - name: install tools
+        run: nix profile add nixpkgs#nodejs nixpkgs#forgejo-cli
+
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.FLAKE_BUMP_TOKEN }}
+
+      - name: bump flake
+        run: nix flake update --flake ./nixos
+
+      - name: commit and pr
+        env:
+            TOKEN: ${{ secrets.FLAKE_BUMP_TOKEN }}
+            SERVER: ${{ github.server_url }}
+            REF: ${{ github.ref_name }}
+        run: |
+          if git diff --quiet -- nixos/flake.lock; then
+            echo "flake.lock already current"
+            exit 0
+          fi
+
+          git config user.name "flake-bot"
+          git config user.email "flake-bot@localhost"
+          git switch -c "$PR_BRANCH"
+          git add nixos/flake.lock
+          git commit -m "nix: bump flake.lock"
+          git push --force origin "$PR_BRANCH"
+
+          host="${SERVER#https://}"
+          printf '%s' "$TOKEN" | fj auth add-token --host "$host"
+
+          fj pr create "nix: bump flake.lock" \
+            --host "$host" \
+            --base "$REF" \
+            --head "$PR_BRANCH" \
+            -A
