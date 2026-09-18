@@ -5,10 +5,10 @@ separator = ""
 [icons]
 icons = "material-nf"
 
-[[block]]
-block = "focused_window"
-[block.format]
-full = " $title.str() |"
+# [[block]]
+# block = "focused_window"
+# [block.format]
+# full = " $title.str(max_w:60) |"
 
 [[block]]
 block = "cpu"
@@ -38,6 +38,15 @@ button = "left"
 cmd = "alacritty -e btop"
 
 [[block]]
+block = "disk_space"
+format = " $icon root: $used /$total "
+
+[[block]]
+block = "disk_space"
+format = " $icon games: $used /$total "
+path = "/mnt/games"
+
+[[block]]
 block = "backlight"
 missing_format = ""
 
@@ -49,15 +58,15 @@ cmd = "pavucontrol"
 
 [[block]]
 block = "net"
-format = " $icon {$signal_strength $ssid|Wired} "
+format = " $icon {$signal_strength $ssid|Wired $ip} "
 [[block.click]]
 button = "left"
 cmd = "alacritty -e nmtui"
 
-[[block]]
-block = "battery"
-full_format = " $icon $percentage "
-
+# [[block]]
+# block = "battery"
+# full_format = " $icon $percentage "
+# missing_format = ""
 
 [[block]]
 block = "time"

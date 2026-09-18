@@ -1,16 +1,26 @@
 # Monitor
-output * disable
-output eDP-1 enable scale 1.5 position 0,0
-#output DP-3 enable res 3440x1440@175Hz scale 1 position -3440,0 
-#output DP-3 enable res 3840x2160@60Hz scale 1 position 1504,0 
+# output * disable
+output DP-2 enable res 3440x1440@175Hz scale 1 position 0 0
+output HDMI-A-1 enable res 1920x1080@99Hz scale 1 position -1080 0 transform 90
+workspace 1 output DP-2
+workspace 4 output HDMI-A-1
 
 bar {
+    id main
     position top
+    output DP-2
     status_command i3status-rs
     tray_output none
-    font pango:monospace 10
+    font pango:CaskaydiaCove Nerd Font 10
 }
 
+bar {
+    id side
+    position top
+    output HDMI-A-1
+    tray_output HDMI-A-1
+    font pango:CaskaydiaCove Nerd Font 10
+}
 
 # Mod4 = super
 set $mod Mod4
@@ -23,7 +33,7 @@ set $right l
 
 # App Preferences
 set $term alacritty
-set $browser firefox
+set $browser librewolf
 set $menu wmenu-run
 set $explorer thunar
 set $passwords keepassxc
@@ -34,11 +44,12 @@ include /etc/sway/config.d/*
 exec autotiling -l 2
 exec mako
 exec wpctl set-sink-volume @DEFAULT_SINK@ 40%
-exec flatpak run com.github.wwmm.easyeffects --gapplication-service
+# exec flatpak run com.github.wwmm.easyeffects --gapplication-service
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Theme
-output * bg /home/lmcd/Pictures/wallpaper.png fill
+output * bg /home/lmcd/Pictures/wallpaper.jpg fill
+output HDMI-A-1 bg /home/lmcd/Pictures/wallpaper.png fill
 default_border none
 default_floating_border none
 gaps inner 3
@@ -72,8 +83,6 @@ for_window [app_id="dropdown"] floating enable, \
     scratchpad show
 
 # Keybinds
-# Mod4 = super
-set $mod Mod4
 
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
@@ -82,7 +91,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+v floating toggle
 
 bindsym $mod+Return exec $term
-bindsym $mod+d exec $menu
+bindsym $mod+Space exec $menu
 bindsym $mod+e exec $explorer
 bindsym $mod+b exec $browser
 bindsym $mod+i exec $passwords
