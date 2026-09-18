@@ -11,7 +11,7 @@ $character
 """
 
 add_newline = false
-command_timeout = 100
+command_timeout = 10
 
 [username]
 style_user = "white bold"
