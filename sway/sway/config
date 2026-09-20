@@ -77,7 +77,7 @@ input type:keyboard {
 bindsym --to-code $mod+grave exec (swaymsg "[app_id=dropdown] scratchpad show") || exec $term --class dropdown -e tmux new-session -A -s scratch
 
 for_window [app_id="dropdown"] floating enable, \
-    resize set 70 ppt 60 ppt, \
+    resize set 90 ppt 80 ppt, \
     move position center, \
     move to scratchpad, \
     scratchpad show
