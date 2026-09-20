@@ -34,7 +34,6 @@ if [[ -o interactive ]]; then
     _alif ecm gocryptfs "~/.Private ~/Private"
     _alif _ufusermount fusermount3 -u
     _alif ecu _ufusermount "~/Private"
-    _alif rm trash
     _alif imv imv-dir
     _alif lg lazygit
     _alif jg just "-g"
@@ -44,6 +43,11 @@ if [[ -o interactive ]]; then
             dir=$(git rev-parse --show-toplevel)
             cd $dir
         }
+    fi
+
+    if _have trash; then
+        alias rm=trash
+        compdef _gnu_generic trash
     fi
 
     if _have xdg-open; then
