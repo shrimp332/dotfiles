@@ -26,18 +26,6 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "exit terminal insert mode"
 
 vim.diagnostic.config({ virtual_text = false })
 
--- clipboard + over ssh
-vim.g.clipboard = {
-    name = "OSC 52",
-    copy = {
-        ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-        ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-    },
-    paste = {
-        ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-        ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-    },
-}
 opt.clipboard = "unnamedplus"
 
 local gh = function(x)
