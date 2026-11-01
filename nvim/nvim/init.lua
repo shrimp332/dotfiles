@@ -24,7 +24,10 @@ vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and 
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "exit terminal insert mode" })
 
-vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({
+    virtual_text = false,
+    virtual_lines = { current_line = true },
+})
 
 opt.clipboard = "unnamedplus"
 
