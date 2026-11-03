@@ -25,3 +25,5 @@ export CARGO_HOME=$XDG_DATA_HOME/cargo
 export GOPATH=$XDG_DATA_HOME/go
 export ELECTRON_OZONE_PLATFORM_HINT=auto
 export PATH=/var/lib/flatpak/exports/bin:$HOME/.local/bin:$XDG_DATA_HOME/go/bin:$PATH
+
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"

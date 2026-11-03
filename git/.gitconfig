@@ -1,7 +1,7 @@
 [user]
 	name = Luke McDonald
-	email = 101687942+shrimp332@users.noreply.github.com
-	signingkey = /home/lmcd/.ssh/id_ed25519.pub
+	email = luke+git@lmcd.au
+	signingKey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICH/BKTKFciZ6f3a6bIroyJcwa65GzoIUtEOJimfDDT8 lmcd-personal
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
@@ -14,7 +14,7 @@
 	format = ssh
 [commit]
 	gpgSign = true
-[gpg "ssh"]
-	allowedSignersFile = /home/lmcd/.config/git/allowed_signers
+[tag]
+	gpgSign = true
 [submodule]
 	recurse = true
