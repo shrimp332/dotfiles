@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+mv ~/Downloads/$(ls -t ~/Downloads | head -1) .
